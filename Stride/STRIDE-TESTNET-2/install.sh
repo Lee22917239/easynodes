@@ -6,7 +6,7 @@ do
 # Logo
 
 echo "============================================================"
-curl -s https://raw.githubusercontent.com/ericet/easynodes/master/logo.sh | bash
+curl -s https://raw.githubusercontent.com/Lee22917239/easynodes/master/logo.sh | bash
 echo "============================================================"
 
 
