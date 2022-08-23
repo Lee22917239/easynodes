@@ -410,7 +410,7 @@ exit
 esac
 done
 break
-;;
+;; 
 
 "退出")
 exit
