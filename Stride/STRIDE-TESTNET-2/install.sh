@@ -87,14 +87,14 @@ echo "============================================================"
 
 git clone https://github.com/Stride-Labs/stride.git
 cd stride
-git checkout 3cb77a79f74e0b797df5611674c3fbd000dfeaa1
+git checkout cf4e7f2d4ffe2002997428dbb1c530614b85df1b
 make build
-mv $HOME/stride/build/strided $HOME/go/bin/
+mv $HOME/stride/build/strided /usr/local/go/bin
 
 
-strided init $STRIDENODE --chain-id $STRIDECHAIN
+strided init YourMonikerName --chain-id=STRIDE-TESTNET-4
 
-strided tendermint unsafe-reset-all --home $HOME/.stride
+strided tendermint unsafe-reset-all --home ~/.stride/
 rm $HOME/.stride/config/genesis.json
 curl -s https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/genesis.json > ~/.stride/config/genesis.json
 
@@ -112,9 +112,9 @@ sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.stride/config/app.toml
 
 wget -O $HOME/.stride/config/addrbook.json "https://api.nodes.guru/stride_addrbook.json"
-SEEDS="c0b278cbfb15674e1949e7e5ae51627cb2a2d0a9@seedv2.poolparty.stridenet.co:26656"
-PEERS="8e301628c3f86ba6f875e4978d73bf532198151b@34.170.216.198:26656,a4058280bdf7c7b5d9c452e3ae0027e6905f17be@159.223.227.15:16656,7ae3b00c50b17ec306db84155665bf7c598251d2@178.18.240.171:26656,4070d37bcdc121f6d3603ccd5608c6d00eb4c5b4@38.242.144.252:16656,237c3eaf5617a5e14164cbf9e6af928436f8c442@65.108.11.180:17656,10e1829f03abd7d945621b2986c95082e737e935@40.114.114.229:16656,d7b72c668e32bf1e5efa7d196047188d5a6f1db8@65.108.231.252:46656,9015b5674d890b5d6e89219576eac64309da79e5@146.19.24.34:36656,9fa7a4ec38074f5a2c7878c686785a8cbbb5998e@20.216.136.170:16656,cdc1aef42d8dc3a278bbc40651c0a2d0c609b38f@34.133.185.92:26656,548aa59f61206b469c551f74cc7bf0469ace886a@185.249.225.174:16656,ade0de29d1b4d6871366314b0a9d580c811b233b@144.91.77.189:36886,2a691eb4dc624eeb178dfc37ef18a9ac611239db@194.146.25.245:16656,390ff948ffbb9ad1793c3de91bf457750f3279b6@65.108.71.92:54356,60990219d79a5b497ae44cde0753979b2220501a@185.231.153.229:26656,3766ebe762f6825b3498e97a3b93f0ee1e8e0faa@34.171.211.242:26656,a2f991feac3dea5a12f1ebdd6c2bf5f30e0ccfba@65.108.11.234:26656"; \
-sed -i.bak "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/;" $HOME/.stride/config/config.toml
+seeds="d2ec8f968e7977311965c1dbef21647369327a29@seedv2.poolparty.stridenet.co:26656"
+PEERS="73f15ad99a0ac6e60cda2b691bc5b71cd7f221bc@141.95.124.151:20086,54a11c47658ebd5dcbd70eb3c62197b439482d3f@116.202.236.115:21016,75e6d2a4efeefce26544266eb39d57ef521be68e@65.108.132.239:26656,95ee745023b21aee6aa62c46352724b5f32240cd@161.97.91.70:16656,aeabaf90afbe6321f2e8a33ddc5aebf2963f6efd@65.108.238.183:36656,89fc167903c6f8afd519cbc8cc1542ac6467f911@135.181.133.248:11656,abb29071e552fb1cd8ecae886c50ac3471a170c3@164.68.125.90:26656,f93ce5616f45d6c20d061302519a5c2420e3475d@135.125.5.31:54356,b1a26c4fedca3a5aa9667a9e0978291556cbef7b@20.249.101.185:16656,3f1d13d7b9d499ca2c4647b844dab1d3a3f2a6ab@212.162.153.56:26656,04504878ab54e214a0d08bbbb40c0339b259514c@20.117.210.30:26656,4894863befa8edb312608c2ffc3429a96873586d@116.202.112.175:16656,6b042f75b5190d9bddd2d1f34e3fcab71785144c@178.250.242.94:16656,24f0fd1110885a8b962000fb1c91224e1ecd61f2@161.97.145.238:16656"; \
+sed -i.bak "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/;" ~/.stride/config/config.toml
 sed -i "s/^seeds *=.*/seeds = \"$SEEDS\"/;" $HOME/.stride/config/config.toml
 
 
